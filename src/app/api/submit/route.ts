@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { transporter } from "@/lib/email";
+import { saveLead } from "@/lib/db";
 import { serviceOptions } from "../../_data/services";
 
 interface SubmitBody {
@@ -127,6 +128,8 @@ export async function POST(request: Request) {
 
     const service = serviceOptions.find((s) => s.id === body.selectedService);
     const serviceLabel = service?.label ?? body.selectedService;
+
+    saveLead(body);
 
     const html = buildConfirmationHtml(body, serviceLabel);
 

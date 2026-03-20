@@ -44,3 +44,8 @@ CLAUDE.md
 .claude
 
 .env.*
+
+/docs
+
+# sqlite db
+data/
