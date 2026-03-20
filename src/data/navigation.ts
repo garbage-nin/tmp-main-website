@@ -4,9 +4,7 @@ export interface NavLink {
 }
 
 export const navLinks: NavLink[] = [
-  { label: "Rente beantragen", href: "#" },
-  { label: "Rentenauskunft", href: "#" },
-  { label: "Erwerbsminderungsrente", href: "#" },
-  { label: "Rentenrechner", href: "#" },
-  { label: "Ratgeber", href: "#" },
+  { label: "Dienstleistungen", href: "#" },
+  { label: "Über uns", href: "#" },
+  { label: "Unternehmen", href: "#" },
 ];

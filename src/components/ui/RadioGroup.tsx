@@ -11,6 +11,7 @@ interface RadioGroupProps {
   onChange: (value: string) => void;
   error?: string;
   required?: boolean;
+  direction?: "horizontal" | "vertical" | "grid";
 }
 
 export default function RadioGroup({
@@ -21,6 +22,7 @@ export default function RadioGroup({
   onChange,
   error,
   required,
+  direction = "horizontal",
 }: RadioGroupProps) {
   return (
     <fieldset>
@@ -28,7 +30,7 @@ export default function RadioGroup({
         {label}
         {required && <span className="text-red-500 ml-0.5">*</span>}
       </legend>
-      <div className="flex gap-4 flex-wrap">
+      <div className={direction === "vertical" ? "flex flex-col gap-2" : direction === "grid" ? "grid grid-cols-2 gap-x-4 gap-y-1" : "flex gap-4 flex-wrap"}>
         {options.map((option) => (
           <label
             key={option.value}

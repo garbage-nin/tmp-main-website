@@ -16,10 +16,10 @@ export default function Header() {
           <Link href="/" className="flex items-center gap-3">
             <Image
               src="/logo.png"
-              alt="Deutsche Rentenauskunft"
+              alt="Regis Datasec LTD"
               width={400}
-              height={56}
-              className="h-14 w-auto cursor-pointer hover:opacity-90 transition-opacity"
+              height={100}
+              className="h-10 sm:h-12 w-auto cursor-pointer hover:opacity-90 transition-opacity"
               priority
             />
           </Link>

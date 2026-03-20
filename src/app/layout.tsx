@@ -19,9 +19,9 @@ const notoSans = Noto_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Rentenauskunft online beantragen | Rentenauskunft Service",
+  title: "Regis Datasec LTD | Druckprodukte & Auskünfte zur Rente",
   description:
-    "Rentenauskunft, Renteninformation, Versicherungsverlauf oder Bescheinigungen – erfassen Sie Ihre Daten zentral an einem Ort.",
+    "Regis Datasec LTD – Renteninformation, Versicherungsverlauf oder Bescheinigungen. Erfassen Sie Ihre Daten zentral an einem Ort.",
 };
 
 export default function RootLayout({

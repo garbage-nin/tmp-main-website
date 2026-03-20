@@ -1,11 +1,11 @@
 import HeroSection from "./_components/sections/HeroSection";
-import EmbeddedFormSection from "./_components/sections/EmbeddedFormSection";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
-      <EmbeddedFormSection />
+      {/* Spacer for the form that overflows from the hero on desktop */}
+      <div className="hidden md:block bg-slate-50 py-36" />
     </>
   );
 }

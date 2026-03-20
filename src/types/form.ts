@@ -3,6 +3,11 @@ export interface FormState {
   vorname: string;
   familienname: string;
   email: string;
+  strasse: string;
+  hausnummer: string;
+  plz: string;
+  ort: string;
+  country: string;
   selectedService: string;
   agbAccepted: boolean;
 }
