@@ -11,13 +11,12 @@ export default function HeroSection() {
             Druckprodukte &amp; Auskünfte zur Rente
           </span>
           <h1 className="text-3xl font-bold text-white sm:text-4xl leading-tight font-[family-name:var(--font-barlow)]">
-            Lorem ipsum dolor sit amet consectetur
+            Beantragen Sie Ihre Dokumente schnell und sicher
           </h1>
           <p className="mt-3 text-lg text-slate-100 leading-relaxed">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
+            Beantragen Sie wichtige Dokumente und Dienstleistungen ganz einfach
+            in nur wenigen Klicks. Wir übernehmen den gesamten Prozess für Sie –
+            und sparen Ihnen Zeit, Aufwand und unnötigen Stress.
           </p>
         </div>
 

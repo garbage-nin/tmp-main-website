@@ -42,6 +42,7 @@ function buildConfirmationHtml(body: SubmitBody, serviceLabel: string): string {
 <body style="margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;background-color:#f5f5f5;">
   <div style="max-width:600px;margin:0 auto;background:#ffffff;">
     <div style="background-color:#0F2440;padding:24px;text-align:center;">
+      <img src="https://regis-datasec.com/logo.png" alt="Regis Datasec LTD" width="200" style="display:block;margin:0 auto 12px;max-width:200px;height:auto;">
       <h1 style="margin:0;font-size:22px;color:#ffffff;">Regis Datasec LTD</h1>
     </div>
 
@@ -53,7 +54,7 @@ function buildConfirmationHtml(body: SubmitBody, serviceLabel: string): string {
       </p>
 
       <div style="background:#f9f9f9;border-radius:8px;padding:20px;margin:24px 0;">
-        <h2 style="font-size:16px;color:#0F2440;margin:0 0 12px;">Ihre Angaben</h2>
+        <h2 style="font-size:16px;color:#2E86C1;margin:0 0 12px;">Ihre Angaben</h2>
         <p style="margin:4px 0;font-size:14px;color:#555;">
           <strong>Datum:</strong> ${dateStr}<br>
           <strong>Name:</strong> ${body.vorname} ${body.familienname}<br>
@@ -64,7 +65,7 @@ function buildConfirmationHtml(body: SubmitBody, serviceLabel: string): string {
       </div>
 
       <div style="margin-top:28px;">
-        <h2 style="font-size:16px;color:#0F2440;">Nächste Schritte</h2>
+        <h2 style="font-size:16px;color:#2E86C1;">Nächste Schritte</h2>
         <p style="font-size:14px;color:#555;line-height:1.6;">
           Unser Team wird Ihre Anfrage prüfen und sich zeitnah mit Ihnen in Verbindung setzen.
           Bei dringenden Fragen können Sie uns jederzeit per E-Mail erreichen.
@@ -76,7 +77,7 @@ function buildConfirmationHtml(body: SubmitBody, serviceLabel: string): string {
         <strong>Ihr Team von Regis Datasec LTD</strong>
       </p>
 
-      <div style="margin-top:32px;padding-top:20px;border-top:1px solid #e0e0e0;">
+      <div style="margin-top:32px;padding-top:20px;border-top:1px solid #3DA63D;">
         <p style="font-size:12px;color:#777;line-height:1.5;margin:0;">
           Regis Datasec LTD<br>
           E-Mail: info@regis-datasec.com

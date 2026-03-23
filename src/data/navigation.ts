@@ -3,8 +3,4 @@ export interface NavLink {
   href: string;
 }
 
-export const navLinks: NavLink[] = [
-  { label: "Dienstleistungen", href: "#" },
-  { label: "Über uns", href: "#" },
-  { label: "Unternehmen", href: "#" },
-];
+export const navLinks: NavLink[] = [];
