@@ -132,14 +132,17 @@ export async function POST(request: Request) {
 
     saveLead(body);
 
-    const html = buildConfirmationHtml(body, serviceLabel);
-
-    await transporter.sendMail({
-      from: process.env.SMTP_FROM ?? "info@regis-datasec.com",
-      to: body.email,
-      subject: "Bestätigung Ihrer Anfrage – Regis Datasec LTD",
-      html,
-    });
+    if (process.env.SMTP_HOST) {
+      const html = buildConfirmationHtml(body, serviceLabel);
+      await transporter.sendMail({
+        from: process.env.SMTP_FROM ?? "info@regis-datasec.com",
+        to: body.email,
+        subject: "Bestätigung Ihrer Anfrage – Regis Datasec LTD",
+        html,
+      });
+    } else {
+      console.warn("SMTP not configured — skipping confirmation email");
+    }
 
     return NextResponse.json({ success: true });
   } catch (err) {
