@@ -47,6 +47,7 @@ export default function EmbeddedFormSection() {
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [rateLimited, setRateLimited] = useState(false);
 
   const handleSubmit = async () => {
     const validationErrors = validateForm(state);
@@ -63,6 +64,12 @@ export default function EmbeddedFormSection() {
 
       if (res.ok) {
         setSubmitted(true);
+      } else if (res.status === 429) {
+        const data: { error?: string; retryAfterSeconds?: number } = await res.json();
+        setErrors({ submit: data.error || "Zu viele Anfragen. Bitte warten Sie einige Minuten." });
+        setRateLimited(true);
+        const waitMs = (data.retryAfterSeconds ?? 60) * 1000;
+        setTimeout(() => setRateLimited(false), waitMs);
       } else {
         const data: { error?: string } = await res.json();
         setErrors({ submit: data.error || "Ein Fehler ist aufgetreten." });
@@ -301,7 +308,7 @@ export default function EmbeddedFormSection() {
             variant="accent"
             className="w-full sm:w-auto"
             onClick={handleSubmit}
-            disabled={submitting}
+            disabled={submitting || rateLimited}
           >
             {submitting ? "Wird gesendet..." : "Anfrage absenden"}
           </Button>

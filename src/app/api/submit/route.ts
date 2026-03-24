@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
+import { headers } from "next/headers";
 import { transporter } from "@/lib/email";
 import { saveLead } from "@/lib/db";
+import { checkRateLimit } from "@/lib/rate-limit";
 import { serviceOptions } from "../../_data/services";
 
 interface SubmitBody {
@@ -16,6 +18,8 @@ interface SubmitBody {
   selectedService: string;
   agbAccepted: boolean;
 }
+
+const MAX_FIELD_LENGTH = 200;
 
 function buildConfirmationHtml(body: SubmitBody, serviceLabel: string): string {
   const anredeText =
@@ -95,7 +99,38 @@ function buildConfirmationHtml(body: SubmitBody, serviceLabel: string): string {
 
 export async function POST(request: Request) {
   try {
+    // Rate limiting
+    const headersList = await headers();
+    const forwarded = headersList.get("x-forwarded-for");
+    const ip = forwarded?.split(",")[0].trim() ?? "unknown";
+
+    const { allowed, retryAfterSeconds } = checkRateLimit(ip);
+    if (!allowed) {
+      return NextResponse.json(
+        {
+          error: `Zu viele Anfragen. Bitte warten Sie ${Math.ceil(retryAfterSeconds / 60)} Minuten.`,
+          retryAfterSeconds,
+        },
+        { status: 429, headers: { "Retry-After": String(retryAfterSeconds) } },
+      );
+    }
+
     const body = (await request.json()) as SubmitBody;
+
+    // Field length limits
+    const stringFields: (keyof SubmitBody)[] = [
+      "anrede", "vorname", "familienname", "email",
+      "strasse", "hausnummer", "plz", "ort", "country", "selectedService",
+    ];
+    for (const field of stringFields) {
+      const val = body[field];
+      if (typeof val === "string" && val.length > MAX_FIELD_LENGTH) {
+        return NextResponse.json(
+          { error: `Feld "${field}" ist zu lang (max. ${MAX_FIELD_LENGTH} Zeichen).` },
+          { status: 400 },
+        );
+      }
+    }
 
     const required: (keyof SubmitBody)[] = [
       "anrede", "vorname", "familienname", "email",
